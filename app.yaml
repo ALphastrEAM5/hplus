@@ -1,3 +1,12 @@
 runtime: python37
 resources:
   memory_gb: 4
+env_variables:
+  SQLALCHEMY_DATABASE_URI: mysql://root:@/covid
+  MAIL_SERVER: smtp.gmail.com
+  MAIL_PORT: '465'
+  MAIL_USE_SSL: true
+  MAIL_USERNAME: spihbdcpj@gmail.com
+  MAIL_PASSWORD: zkxhbnjimncyuheq
+
+entrypoint: gunicorn -b :$PORT main:app
