@@ -18,7 +18,7 @@ app.secret_key="dbms-project"
 
 
 
-with open('config.json','r') as c:
+with open('E:\DBMS\config.json','r') as c:
      params=json.load(c)["params"]
 
 app.config.update(
