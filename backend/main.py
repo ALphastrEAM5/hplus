@@ -147,7 +147,10 @@ def signup():
                return render_template("usersignup.html")
           # conn=engine.connect()
           # values = [(srfid, email, encpassword)]
-          new_user = db.engine.execute(f"INSERT INTO `user` (`srfid`, `email`, `dob`) VALUES ('{srfid}', '{email}', '{encpassword}') ")
+          new_user = User(srfid=srfid, email=email, dob=encpassword)
+          db.session.add(new_user)
+          db.session.commit()
+          # new_user = db.engine.execute(f"INSERT INTO `user` (`srfid`, `email`, `dob`) VALUES ('{srfid}', '{email}', '{encpassword}') ")
           
           # conn.close() 
              
@@ -246,7 +249,10 @@ def hospitalUser():
                     flash("Email or srfid is already taken", "warning")
               
               
-               db.engine.execute(f"INSERT INTO `hospitaluser` (`hcode`, `email`, `password`) VALUES ('{hcode}', '{email}', '{encpassword}') ")
+               hospital_user = hospitaluser(hcode=hcode, email=email, password=encpassword)
+               db.session.add(hospital_user)
+               db.session.commit()
+               # db.engine.execute(f"INSERT INTO `hospitaluser` (`hcode`, `email`, `password`) VALUES ('{hcode}', '{email}', '{encpassword}') ")
                flash("Data Inserted", "warning")
 
 
@@ -259,7 +265,7 @@ def hospitalUser():
                msg['Subject'] = 'COVID CARE CENTER'
                msg['From'] = EMAIL_ADDRESS
                msg['To'] = [email]
-               msg.set_content(f'Welcome thanks for choosing us\nYour Login Credentials are:\nEmail Address: {email}\nPassword: {password}\n\n\n\nHospital Code {hcode}Do not share your password\n\n\nThank You...')
+               msg.set_content(f'Welcome thanks for choosing us\nYour Login Credentials are:\nEmail Address: {email}\nPassword: {password}\n\n\n\nHospital Code {hcode}\n\tDo not share your password\n\n\nThank You...')
 
                with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
                     smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
@@ -320,7 +326,7 @@ def logoutadmin():
 def addhospitalinfo():
 
      print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++addhospitalinfo function called")
-     huser=db.engine.execute("SELECT * from `hospitaluser`")
+     huser=db.session.query(hospitaluser).all()
      
      email=g.hospital_user.email
      posts=hospitaluser.query.filter_by(email=email).first()
@@ -343,8 +349,14 @@ def addhospitalinfo():
                flash("Data is already Present, you can Update it", "primary")
                return render_template("hospitaldata.html",postsdata=postsdata)
           if huser:
+               
+               new_hospitalinfo = hospitaldata(hcode=hcode, hname=hname, normalbed=nbed, hicubed=hbed, icubed=ibed, vbed=vbed)
+               db.session.add(new_hospitalinfo)
+               db.session.commit()
+               # db.session.execute(f"INSERT INTO `hospitaldata` (`hcode`,`hname`,`normalbed`,`hicubed`,`icubed`,`vbed`) VALUES ('{hcode}','{hname}','{nbed}','{hbed}','{ibed}','{vbed}')")
+               
 
-               db.engine.execute(f"INSERT INTO `hospitaldata` (`hcode`,`hname`,`normalbed`,`hicubed`,`icubed`,`vbed`) VALUES ('{hcode}','{hname}','{nbed}','{hbed}','{ibed}','{vbed}')")
+               # db.engine.execute(f"INSERT INTO `hospitaldata` (`hcode`,`hname`,`normalbed`,`hicubed`,`icubed`,`vbed`) VALUES ('{hcode}','{hname}','{nbed}','{hbed}','{ibed}','{vbed}')")
                
                flash("Data Is Added", "primary")
 
@@ -368,7 +380,17 @@ def hedit(id):
           ibed=request.form.get('icubeds')
           vbed=request.form.get('ventbeds')
           hcode=hcode.upper()
-          db.engine.execute(f"UPDATE `hospitaldata` SET `hcode`='{hcode}',`hname`='{hname}',`normalbed`='{nbed}',`hicubed`='{hbed}',`icubed`='{ibed}',`vbed`='{vbed}' WHERE `hospitaldata`.`id`={id}")
+          
+          # Update the hospitaldata record
+          posts.hcode = hcode
+          posts.hname = hname
+          posts.normalbed = nbed
+          posts.hicubed = hbed
+          posts.icubed = ibed
+          posts.vbed = vbed
+          
+          db.session.commit()
+          # db.engine.execute(f"UPDATE `hospitaldata` SET `hcode`='{hcode}',`hname`='{hname}',`normalbed`='{nbed}',`hicubed`='{hbed}',`icubed`='{ibed}',`vbed`='{vbed}' WHERE `hospitaldata`.`id`={id}")
           flash("Slot Updated","info")
           return redirect("/addhospitalinfo")
 
@@ -379,7 +401,10 @@ def hedit(id):
 @app.route('/hdelete/<string:id>',methods=['POST','GET'])
 # @hospital_login_required
 def hdelete(id):
-     db.engine.execute(f"DELETE FROM `hospitaldata` WHERE `hospitaldata`.`id`={id}")
+     post = hospitaldata.query.filter_by(id=id).first()
+     db.session.delete(post) 
+     db.session.commit() 
+     # db.engine.execute(f"DELETE FROM `hospitaldata` WHERE `hospitaldata`.`id`={id}")
      flash("Data Deleted","danger")
      return redirect("/addhospitalinfo")
 
