@@ -10,8 +10,9 @@ Admin Password- abir123
 When admin login is success, he can enter hospital code and hospital names along with email id of respective Hospital Manager. After he has added successfully, an email will go to the Hospital user/Manager regarding the login credentials through which he can enter into his Hospital Dashboard and add his Hospital details and number of beds available. (**Point to be careful about: the Email will go the respective hospital user. If he can’t find email in the inbox section, he should search in the SPAM folder of his email**) Hospital code will also be inside the email. If the Hospital user types wrong hospital code, a warning message will appear. After adding hospital details reload the page again(‘CTRL+R’ recommended) and he will be able to see his hospital details printed on the right hand side . Then he can’t make entries again otherwise warning message will say “Data is Already Present. You can Update It”. There will appear edit and delete icons on the right hand side from where they can update or delete their Hospital entry as per their choice. Now the Hospital User can safely logout from the session.
 
 Now the patient or user can login through user login option to book a slot, see his details or available beds. New user can sign up and safely login. When user books a slot, he can’t book slot again otherwise warning message will appear. He can fill in his details in the form that will appear and book slots according to a specific hospital and the number of beds available there(which will appear to be printed on right hand side of the same slotbooking page). He can now click patient details to see if he has correctly filled the data or not or see his report.
-***[There are two videos in my github link(https://github.com/ALphastrEAM5/hplus.git
-) and also in my drive link. One video is there where I gave the presentation and in the other video, I discussed about how to run the website. To know more, see the video I shared titled ‘How to Run’]***
+***[There are two videos. The presentation video is in my github link(https://github.com/ALphastrEAM5/hplus.git
+) and demo video is in my drive link(https://drive.google.com/file/d/1uBHjNO-WneRhT-LFid30tWsw_Wxf5qQ0/view?usp=sharing) where I discussed how to run the Website. To know more, see the video I shared titled ‘How to Run’]***
+
 
 
 Dependencies
