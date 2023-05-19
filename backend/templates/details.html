@@ -1,42 +1,47 @@
-{% extends 'baselogin.html' %} {% block title %} Patient Details{% endblock
-title %} {% block form %}
-<h2>Patient Details</h2>
+{% extends 'baselogin.html' %} 
+{% block title %} Patient Details{% endblock title %} 
+{% block form %}
+  <h2>Patient Details</h2>
 
-<head>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-</head>
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-4"></div>
-
-    <div class="col-md-4">
-      <h1>Patient Details</h1>
-      <br /><br /><br /><br /><br /><br /><br /><br /><br />
-      <div class="card p-3">
-        <p>SRFID</p>
-        <p>SRFID</p>
-        <p>SRFID</p>
-        <p>SRFID</p>
-        <p>SRFID</p>
-        <p>SRFID</p>
-        <p>SRFID</p>
-        <p>SRFID</p>
-        <p>SRFID</p>
-        <p>SRFID: {{ data.srfid }}</p>
-        <p>llhktlhkthtothlBed Type: {{ data.bedtype }}</p>
-        <p>lemfleHospital Code: {{ data.hcode }}</p>
-        <p>Oxygen level: {{ data.spo2 }}</p>
-        <p>Patient Name: {{ data.pname }}</p>
-        <p>Phone No.: {{ data.pphone }}</p>
-        <p>Address: {{ data.paddress }}</p>
+  <div class="container">
+    <div class="row" style="border: 1px dotted black;">
+      <div class="col-md-4"></div>
+  
+      <div class="col-md-9">
+        <h1>Patient Details</h1>
+        <br /><br /><br /><br /><br /><br /><br /><br /><br />
+  
+        <div class="card p-3" style="padding-top: 10px;">
+          <div class="row">
+            <div class="col-md-6">
+              <p>SRFID: {{ data.srfid }}</p>
+              <p>Bed Type: {{ data.bedtype }}</p>
+              <p>Hospital Code: {{ data.hcode }}</p>
+            </div>
+            <div class="col-md-6">
+              <p>Oxygen level: {{ data.spo2 }}</p>
+              <p>Patient Name: {{ data.pname }}</p>
+              <p>Phone No.: {{ data.pphone }}</p>
+              <p>Address: {{ data.paddress }}</p>
+            </div>
+            <div class="col-md-12 text-right">
+              <a href="/pdetails/specialties">
+              <button class="btn btn-danger" style="color: white;">Consult Doctor</button></a>
+            </div>
+          </div>
+        </div>
       </div>
+  
+      <div class="col-md-4"></div>
     </div>
-
-    <div class="col-md-4"></div>
   </div>
+  
 
-  <div class="chatbox">
+  <div class="chatbox" style="position: fixed; style="z-index: 9999;">
     <div class="chatbox__support">
       <div class="chatbox__header">
         <div class="chatbox__image--header">
@@ -47,7 +52,7 @@ title %} {% block form %}
         </div>
         <div class="chatbox__content--header">
           <h4 class="chatbox__heading--header">Chat support</h4>
-          <p class="chatbox__description--header">
+          <p class="chatbox__description--header" style="color: white;">
             Hi. My name is Sam. How can I help you?
           </p>
         </div>
@@ -68,14 +73,13 @@ title %} {% block form %}
       </button>
     </div>
   </div>
-</div>
 
-<script>
-  $SCRIPT_ROOT = {{ request.script_root|tojson }};
-</script>
-<script
-  type="text/javascript"
-  src="{{ url_for('static', filename='app.js') }}"
-></script>
+  <script>
+    $SCRIPT_ROOT = {{ request.script_root|tojson }};
+  </script>
+  <script
+    type="text/javascript"
+    src="{{ url_for('static', filename='main.js') }}"
+  ></script>
 
 {% endblock form %}
