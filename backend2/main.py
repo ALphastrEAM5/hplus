@@ -4,6 +4,7 @@ import json
 import requests
 import smtplib
 from functools import wraps
+from chat import get_response
 from views import process_price
 from email.message import EmailMessage
 import os
@@ -63,7 +64,7 @@ def allowed_file(filename):
 
 @login_manager.user_loader
 def load_user(user_id):
-     return db.session.get(User, int(user_id))
+     return db.session.get(user, int(user_id))
 
 
 
@@ -75,7 +76,7 @@ class Test(db.Model):
      name=db.Column(db.String(50))
 
 
-class User(UserMixin,db.Model):
+class user(UserMixin,db.Model):
      id= db.Column(db.Integer,primary_key=True)
      srfid=db.Column(db.String(20),unique=True)
      email=db.Column(db.String(100),unique=True)
@@ -108,7 +109,7 @@ class bookingpatient(db.Model):
      id= db.Column(db.Integer,primary_key=True)
      srfid=db.Column(db.String(50),unique=True)
      bedtype=db.Column(db.String(50))
-     hcode=db.Column(db.Integer)
+     hcode=db.Column(db.String(20))
      spo2=db.Column(db.Integer)
      pname=db.Column(db.String(50))
      pphone=db.Column(db.String(12))
@@ -142,7 +143,7 @@ class visiting(db.Model):
     appointment = db.Column(db.DateTime)
 
 
-class Pkgs(db.Model):
+class pkgs(db.Model):
     id= db.Column(db.Integer, primary_key=True)
     hcode = db.Column(db.String(30))
     hname = db.Column(db.String(100))
@@ -189,14 +190,14 @@ def signup():
           dob=request.form.get('dob')
           # print(srfid,email,dob)
           encpassword=generate_password_hash(dob)
-          user=User.query.filter_by(srfid=srfid).first()
-          emailUser=User.query.filter_by(email=email).first()
-          if user or emailUser:
+          user1=user.query.filter_by(srfid=srfid).first()
+          emailUser=user.query.filter_by(email=email).first()
+          if user1 or emailUser:
                flash("Email or srfid is already taken", "warning")
                return render_template("usersignup.html")
           # conn=engine.connect()
           # values = [(srfid, email, encpassword)]
-          new_user = User(srfid=srfid, email=email, dob=encpassword)
+          new_user = user(srfid=srfid, email=email, dob=encpassword)
           db.session.add(new_user)
           db.session.commit()
           # new_user = db.engine.execute(f"INSERT INTO `user` (`srfid`, `email`, `dob`) VALUES ('{srfid}', '{email}', '{encpassword}') ")
@@ -215,10 +216,10 @@ def login():
      if request.method=="POST":
           srfid=request.form.get('srf')
           dob=request.form.get('dob')
-          user=User.query.filter_by(srfid=srfid).first()
+          user1=user.query.filter_by(srfid=srfid).first()
 
-          if user and check_password_hash(user.dob,dob):
-               login_user(user)
+          if user1 and check_password_hash(user1.dob,dob):
+               login_user(user1)
                flash("Login Success","info")
                return render_template("index.html")
           
@@ -311,8 +312,8 @@ def hospitalUser():
                print('++++++++++++++++++++++++++++++',EMAIL_ADDRESS, EMAIL_PASSWORD)
 
                msg = EmailMessage()
-               msg['Subject'] = 'COVID CARE CENTER'
-               msg['From'] = EMAIL_ADDRESS
+               msg['Subject'] = 'Login Credentials'
+               msg['From'] = 'Covid Care Centre <{}>'.format(EMAIL_ADDRESS)
                msg['To'] = [email]
                msg.set_content(f'Welcome thanks for choosing us\nYour Login Credentials are:\nEmail Address: {email}\nPassword: {password}\n\n\n\nHospital Code {hcode}\n\tDo not share your password\n\n\nThank You...')
 
@@ -468,6 +469,13 @@ def pdetails():
      return render_template("details.html",data=data)
 
 
+
+@app.post("/predict")
+def predict():
+    text = request.get_json().get("message")
+    response = get_response(text)
+    message = {"answer": response}
+    return jsonify(message)
 
 
 @app.route("/slotbooking", methods=['POST', 'GET'])
@@ -648,9 +656,9 @@ def ajaxlivesearch():
     if request.method == 'POST':
         search_word = request.form['query']
         if search_word == '':
-            user = db.session.query(doctors, Pkgs.hname).join(visiting, visiting.name == doctors.name).join(medical_data, visiting.hcode == medical_data.hcode).join(Pkgs, Pkgs.hcode == medical_data.hcode).order_by(doctors.id).all()
+            user = db.session.query(doctors, pkgs.hname).join(visiting, visiting.name == doctors.name).join(medical_data, visiting.hcode == medical_data.hcode).join(pkgs, pkgs.hcode == medical_data.hcode).order_by(doctors.id).all()
         else:
-            user = db.session.query(doctors, Pkgs.hname).join(visiting, visiting.name == doctors.name).join(medical_data, visiting.hcode == medical_data.hcode).join(Pkgs, Pkgs.hcode == medical_data.hcode).filter(
+            user = db.session.query(doctors, pkgs.hname).join(visiting, visiting.name == doctors.name).join(medical_data, visiting.hcode == medical_data.hcode).join(pkgs, pkgs.hcode == medical_data.hcode).filter(
                 db.or_(
                     doctors.name.like(f'%{search_word}%'),
                     doctors.email.like(f'%{search_word}%'),
@@ -664,7 +672,7 @@ def ajaxlivesearch():
                     medical_data.hcode.like(f'%{search_word}%'),
                     medical_data.postal_code.like(f'%{search_word}%'),
                     medical_data.tests.like(f'%{search_word}%'),
-                    Pkgs.hname.like(f'%{search_word}%')
+                    pkgs.hname.like(f'%{search_word}%')
                 )
             ).order_by(doctors.id.desc()).all()
         numrows = len(user)
@@ -702,12 +710,87 @@ def uploaded_files():
 
     
     
-@app.post("/predict")
-def predict():
-    text = request.get_json().get("message")
-    response = get_response(text)
-    message = {"answer": response}
-    return jsonify(message)
+@app.route("/pdetails/specialties")
+def consult():
+    return render_template("consult.html")
+
+
+@app.route('/pdetails/specialties/dermatology')
+def dermatology_specialists():
+    specialization = request.args.get('specialization')
+
+    # Query the database for doctors with the specified specialization
+    specialists = db.session.query(doctors, pkgs, visiting, medical_data).join(visiting, doctors.name == visiting.name).join(pkgs, visiting.hcode == pkgs.hcode).join(medical_data, pkgs.hcode == medical_data.hcode).filter(doctors.specialization == specialization).group_by(pkgs.hname).distinct(pkgs.hname).all()
+    
+    print("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB")
+    for specialist in specialists:
+        print(specialist.pkgs.hname)
+
+    return render_template('dermatology.html', specialists=specialists)
+
+
+
+@app.route('/pdetails/specialties/pediatrics')
+def pediatrics_specialists():
+    specialization = request.args.get('specialization')
+
+    # Query the database for doctors with the specified specialization
+    specialists = db.session.query(doctors, pkgs, visiting, medical_data).join(visiting, doctors.name == visiting.name).join(pkgs, visiting.hcode == pkgs.hcode).join(medical_data, pkgs.hcode == medical_data.hcode).filter(doctors.specialization == specialization).group_by(pkgs.hname).distinct(pkgs.hname).all()
+    
+    print("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB")
+    for specialist in specialists:
+        print(specialist.pkgs.hname)
+
+    return render_template('dermatology.html', specialists=specialists)
+
+
+
+@app.route('/pdetails/specialties/recommended-doctors')
+def recommendedDoctors_specialists():
+    
+    specialists = db.session.query(doctors, pkgs, visiting, medical_data).join(visiting, doctors.name == visiting.name).join(pkgs, visiting.hcode == pkgs.hcode).join(medical_data, pkgs.hcode == medical_data.hcode).group_by(pkgs.hname).distinct(pkgs.hname).all()
+    
+    print("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB")
+    for specialist in specialists:
+        print(specialist.pkgs.hname)
+
+    return render_template('dermatology.html', specialists=specialists)
+
+
+
+@app.route('/pdetails/specialties/get_started')
+def get_started():
+    return render_template('scroll.html')
+    
+
+@app.route('/support')
+def support():
+    return render_template("support.html")
+    
+
+@app.route('/support/feedback', methods=['POST', 'GET'])
+def feedback():
+    
+    if request.method=="POST":
+        email=request.form.get('email')
+        name=request.form.get('name').split()[0]
+        EMAIL_ADDRESS = params['gmail-user']
+        EMAIL_PASSWORD = params['gmail-password']
+        print('++++++++++++++++++++++++++++++',EMAIL_ADDRESS, EMAIL_PASSWORD)
+
+        msg = EmailMessage()
+        msg['Subject'] = 'NEWSLETTER'
+        msg['From'] = 'Covid Care Centre <{}>'.format(EMAIL_ADDRESS)
+        msg['To'] = [email]
+        msg.set_content(f'Hey {name} !\n\tThankyou for subscribing to our newsletter. Send us if you have any query and our team will do their best to get back to you soon.\n We will keep you updated about the offers on medicines and about packages on tests. Stay tuned ;-D\n\nThanks,\nHplusCo. & Services\nBangalore')
+
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+            smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+            smtp.send_message(msg)
+        print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+        return render_template("feedback.html")
+    
+    return render_template("/support.html")
 
 if __name__ == "__main__":
      app.run(host='0.0.0.0', port=8080, debug=True)
