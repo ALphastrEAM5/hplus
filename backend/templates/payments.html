@@ -109,17 +109,6 @@
           width: 100%;
         }
       }
-
-      .zoom-row {
-        transition: transform 0.3s;
-      }
-      
-      .zoom-row:hover {
-        transform: scale(1.05);
-        cursor: pointer;
-      }
-      
-      
     </style>
     <!-- Include the Google Pay JavaScript library -->
     <script src="https://pay.google.com/gp/p/js/pay.js"></script>
@@ -245,16 +234,16 @@
           <tr>
             <td>
               <table>
-                <tr class="zoom-row">
+                <tr>
                   <td><input type="radio" name="payment-option" value="card">CREDIT / DEBIT / ATM CARD</td>
                 </tr>
-                <tr class="zoom-row">
+                <tr>
                   <td><input type="radio" name="payment-option" value="netbanking">NETBANKING</td>
                 </tr>
-                <tr class="zoom-row">
+                <tr>
                   <td><input type="radio" name="payment-option" value="wallets">WALLETS</td>
                 </tr>
-                <tr class="zoom-row">
+                <tr>
                   <td><input type="radio" name="payment-option" value="paylater">PAY LATER</td>
                 </tr>
               </table>
@@ -263,22 +252,6 @@
 
           </tr>
         </table>
-
-        <script>
-          var zoomRows = document.getElementsByClassName('zoom-row');
-
-function handleRowClick() {
-  var radioButton = this.querySelector('input[type="radio"]');
-  if (radioButton) {
-    radioButton.checked = true;
-  }
-}
-
-for (var i = 0; i < zoomRows.length; i++) {
-  zoomRows[i].addEventListener('click', handleRowClick);
-}
-
-        </script>
         <div align="center">
             <a href="/cards">
           <button type="submit" value="Submit">Submit</button></a>
