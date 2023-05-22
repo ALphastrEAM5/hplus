@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support Page</title>
+  <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+  <script>
+
+    /* Add your custom styles here */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header, nav, main, footer {
+    padding: 20px;
+  }
+  
+  header {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav ul li {
+    display: inline;
+    margin-right: 10px;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  nav ul li a:hover {
+    color: #666;
+  }
+  
+  section {
+    margin-bottom: 30px;
+  }
+  
+  h2 {
+    color: #333;
+  }
+  
+  .faq-item {
+    margin-bottom: 10px;
+  }
+  
+  .contact-info p {
+    margin: 5px 0;
+  }
+  
+  #contact-form label {
+    display: block;
+    margin-top: 10px;
+  }
+  
+  #contact-form input,
+  #contact-form textarea {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+  }
+  
+  #contact-form button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .documentation-item {
+    margin-bottom: 10px;
+  }
+  
+  .documentation-item h3 {
+    margin-bottom: 5px;
+  }
+  
+  .documentation-item a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .documentation-item a:hover {
+    color: #666;
+  }
+  
+  footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Support Page</h1>
+  </header>
+
+  <nav>
+    <!-- Include navigation links to different sections of the support page -->
+    <ul>
+      <li><a href="#faq">FAQs</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#documentation">Documentation</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="faq">
+      <h2>Frequently Asked Questions</h2>
+      <!-- Add your FAQ content here -->
+      <div class="faq-item">
+        <h3>How to book slot?</h3>
+        <p>Login into your account. If you are new user, then sign up and go to 'Bed Booking Slot Booking Now. There you will find the hospitals and available beds. You can fill the form provided there to add your details and book slot. Hope this helps you. :-D </p>
+      </div>
+      <div class="faq-item">
+        <h3>Which payment options are available?</h3>
+        <p>We accept payments through VISA, MASTERCARD, Internet Banking, Wallets, UPI, Phonepe and various other options .</p>
+      </div>
+      <!-- Add more FAQ items as needed -->
+    </section>
+
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <!-- Add your contact information and form here -->
+      <div class="contact-info">
+        <p>Email: spihbdcpj@gmail.com</p>
+        <p>Phone: 6291022201/ (+91) 9163-755636</p>
+        <!-- Add more contact information as needed -->
+      </div>
+      <form id="feedback", action="/support/feedback", method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+
+    <section id="documentation">
+      <h2>Documentation</h2>
+      <!-- Add your support documentation and guides here -->
+      <div class="documentation-item">
+        <h3>Workflow</h3>
+        <p>hplus
+
+        
+            
+            When admin login is success, he can enter hospital code and hospital names along with email id of respective Hospital Manager. After he has added successfully, an email will go to the Hospital user/Manager regarding the login credentials through which he can enter into his Hospital Dashboard and add his Hospital details and number of beds available. (Point to be careful about: the Email will go the respective hospital user. If he can’t find email in the inbox section, he should search in the SPAM folder of his email) Hospital code will also be inside the email. If the Hospital user types wrong hospital code, a warning message will appear. After adding hospital details reload the page again(‘CTRL+R’ recommended) and he will be able to see his hospital details printed on the right hand side . Then he can’t make entries again otherwise warning message will say “Data is Already Present. You can Update It”. There will appear edit and delete icons on the right hand side from where they can update or delete their Hospital entry as per their choice. Now the Hospital User can safely logout from the session.
+            
+            Now the patient or user can login through user login option to book a slot, see his details or available beds. New user can sign up and safely login. When user books a slot, he can’t book slot again otherwise warning message will appear. He can fill in his details in the form that will appear and book slots according to a specific hospital and the number of beds available there(which will appear to be printed on right hand side of the same slotbooking page). He can now click patient details to see if he has correctly filled the data or not or see his report. 
+            
+            
+            </p>
+        <a href="guide1.pdf" target="_blank">Download Guide 1</a>
+      </div>
+      <div class="documentation-item">
+        <h3>Security</h3>
+        <p>Our website boasts an inviting and informative home page that provides users with essential information about our Health Care Center. It also includes a prominent call-to-action button for easy sign-up, ensuring that visitors can quickly and easily access our services.
+
+            Our system includes validation measures to ensure that only legitimate users can create accounts and access the website. This helps maintain the security and integrity of our platform.
+            
+            To cater to the needs of hospital administrators, we have implemented a secure login functionality. Passwords are hashed to ensure that sensitive information remains protected, and only authorized users can access the system.
+            
+            Our system includes an admin login functionality that allows authorized personnel to manage hospital users. This feature provides administrators with the necessary tools to maintain control and oversight of the system.
+            
+            We understand the importance of security, which is why we have included a logout functionality with session management. This ensures that users are automatically logged out after a certain period of inactivity, reducing the risk of unauthorized access to their accounts.
+            
+            Our system allows hospital administrators to easily add and manage user data in the database. Additionally, our system includes an email notification feature that sends alerts to users when their data is added or modified, ensuring that they are always kept up-to-date.
+            
+            We are confident that these features will greatly enhance the experience of our users and streamline the operations of our Health Care Center.</p>
+        <a href="guide2.pdf" target="_blank">Download Guide 2</a>
+      </div>
+      <!-- Add more documentation items as needed -->
+    </section>
+  </main>
+
+  <footer>
+    <!-- Add your footer content here -->
+    <p>&copy; 2023 Your Company. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script> <!-- Link to your JavaScript file -->
+  <script>// Add any JavaScript code or interactivity here
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault(); // Prevent form submission
+      // Add code to handle form submission or AJAX request
+    });
+    </script>
+</body>
+</html>

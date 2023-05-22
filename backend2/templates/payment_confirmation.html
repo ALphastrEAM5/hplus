@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Confirmation</title>
+    <!-- Add your custom CSS stylesheets or styles here -->
+    <style>
+        /* CSS styles for the payment confirmation page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            padding: 20px;
+        }
+
+        .confirmation-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .success-message {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+            color: #1abc9c;
+        }
+
+        .amount {
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .note {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #888;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+        .back-to-home-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #1abc9c;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-home-button:hover {
+            background-color: #16a085;
+        }
+    </style>
+</head>
+<body>
+    <div class="confirmation-container">
+        <h1>Payment Confirmation</h1>
+        <div class="success-message">Payment Successful!</div>
+        <div class="amount">Amount: ₹5.00</div>
+        <div class="note">Thank you for your payment. Your transaction was successful.</div>
+        <div class="button-container">
+            <a href="/" class="back-to-home-button">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>

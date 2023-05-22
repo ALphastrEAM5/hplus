@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+      }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .header img {
+      height: 30px;
+    }
+    
+    .menu {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .menu li {
+      display: inline-block;
+      margin-right: 10px;
+    }
+    
+    .menu li a {
+      text-decoration: none;
+      color: #333;
+    }
+    
+    .intro {
+      margin-bottom: 20px;
+    }
+    
+    .intro span {
+      font-weight: bold;
+    }
+    
+    .symptom-list {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    
+    .symptom-card {
+      text-align: center;
+      margin: 0 10px;
+    }
+    
+    .symptom-card img {
+      height: 100px;
+    }
+    
+    .symptom-card .symptom-title {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    
+    .get-started-btn {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    .get-started-btn span {
+      margin-left: 5px;
+    }
+    
+    .specialties {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+    
+      .specialty-card {
+        flex: 0 0 45%;
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        transition: transform 0.3s;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+    
+      .specialty-card:hover {
+        transform: scale(1.05);
+      }
+
+      .specialty-card a {
+        text-decoration: none;
+        color: #333;
+      }
+    
+    .specialty-card h3 {
+      margin-top: 18px;
+      font-weight: bold;
+    }
+
+    .specialty-card img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+        border-radius: 4px;
+      }
+    
+    .specialty-card p {
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <a href="/pdetails">
+        <img src="https://newassets.apollo247.com/images/ic_back.svg" alt="Back Arrow - Online Doctor Consultation">
+      </a>
+      <ul class="menu">
+        <li><a href="/doctors/doctors-in-new-delhi-dcity">New Delhi</a></li>
+        <li><a href="/doctors/doctors-in-hyderabad-dcity">Hyderabad</a></li>
+        <li><a href="/doctors/doctors-in-chennai-dcity">Chennai</a></li>
+        <li><a href="/doctors/doctors-in-kolkata-dcity">Kolkata</a></li>
+        <li><a href="/doctors/doctors-in-mumbai-dcity">Mumbai</a></li>
+        <li><a href="/doctors/doctors-in-bangalore-dcity">Bangalore</a></li>
+        <li><a href="/doctors">All Cities</a></li>
+      </ul>
+    </div>
+    
+    <div class="intro">
+      <p>
+        <span>Feeling unwell?</span> Check your symptoms with this assessment in less than 3 min and consult a doctor.
+      </p>
+    </div>
+    
+    <div class="symptom-list">
+      <div class="symptom-card">
+        <img src="https://newassets.apollo247.com/images/askApollo/enter-symptoms-specialty.svg" alt="Enter Symptoms">
+        <p class="symptom-title">Enter Symptoms</p>
+      </div>
+      <div class="symptom-card">
+        <img src="https://newassets.apollo247.com/images/askApollo/understand-caused-specialty.svg" alt="Understand the Cause">
+        <p class="symptom-title">Understand the Cause</p>
+      </div>
+      <div class="symptom-card">
+        <img src="https://newassets.apollo247.com/images/askApollo/book-consult-specialty.svg" alt="Book Consultation">
+        <p class="symptom-title">Book Consultation</p>
+      </div>
+    </div>
+    
+    <a href="/pdetails/specialties/get_started">
+    <button class="get-started-btn">
+      Get Started
+      <span class="icon-ic_arrow_right2"></span>
+    </button>
+    
+    <div class="specialties">
+      <h2>Top Specialties</h2>
+      <div class="specialties">
+        <div class="specialty-card">
+          <a href="/pdetails/specialties/dermatology?specialization=dermatology">
+            <h3>Dermatology</h3>
+            <img src="https://prodaphstorage.blob.core.windows.net/specialties/ee249e8a-950a-489c-8a33-8846889831f5.jpg" alt="Dermatology">
+            <p>Specialists for skin and hair treatments</p>
+            <p>Rashes, Pimples, Acne, Hairfall, Dandruff</p>
+          </a>
+        </div>
+        <div class="specialty-card">
+          <a href="/pdetails/specialties/general-physician-internal-medicine">
+            <h3>General Physician/ Internal Medicine</h3>
+            <img src="https://newassets.apollo247.com/specialties/ic_general_medicine.png" alt="General Physician/ Internal Medicine">
+            <p>Managing acute medical conditions</p>
+            <p>Typhoid, Abdominal Pain, Migraine, Infections</p>
+          </a>
+        </div>
+        <div class="specialty-card">
+          <a href="/pdetails/specialties/pediatrics?specialization=pediatrics">
+            <h3>Pediatrics</h3>
+            <img src="https://newassets.apollo247.com/specialties/ic_paediatrics.png" alt="Pediatrics">
+            <p>Specialists to care and treat children</p>
+            <p>Constipation, Puberty, Nutrition, Autism</p>
+          </a>
+        </div>
+        <div class="specialty-card">
+          <a href="/pdetails/specialties/recommended-doctors?specialization=recommended-doctors">
+            <h3>Recommended Doctors</h3>
+            <img src="https://prodaphstorage.blob.core.windows.net/specialties/87734b2b-3a92-4ebe-97e7-f5a6d9554ef6.jpeg" alt="Recommended Doctors">
+            <p>Top Rated Apollo Doctors</p>
+            <p>Includes all specialties</p>
+          </a>
+        </div>
+      </div>
+    </body>
+    </html>
