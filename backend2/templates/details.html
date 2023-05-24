@@ -15,9 +15,11 @@
         <h1>Patient Details</h1>
         <br /><br /><br /><br /><br /><br /><br /><br /><br />
   
-        <div class="card p-3" style="padding-top: 10px;">
+        <div class="card p-3" style="padding-top: 10px;  border-radius: 5px solid rgb(82, 4, 4);
+        box-shadow: 10px 10px 10px rgba(19, 160, 220, 5),
+        10px 10px 15px rgba(116, 32, 32, 0.05); ">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6" id="col-md-61">
               <p>SRFID: {{ data.srfid }}</p>
               <p>Bed Type: {{ data.bedtype }}</p>
               <p>Hospital Code: {{ data.hcode }}</p>
@@ -62,7 +64,7 @@
       </div>
       <div class="chatbox__footer">
         <input type="text" placeholder="Write a message..." />
-        <button class="chatbox__send--footer send__button">Send</button>
+        <button class="chatbox__send--footer send_button">Send</button>
       </div>
     </div>
     <div class="chatbox__button">

@@ -1,84 +1,173 @@
 {
   "intents": [
-    {
-      "tag": "greeting",
-      "patterns": [
-        "Hi",
-        "Hey",
-        "How are you",
-        "Is anyone there?",
-        "Hello",
-        "Good day"
-      ],
-      "responses": [
-        "Hey :-)",
-        "Hello, thanks for visiting",
-        "Hi there, what can I do for you?",
-        "Hi there, how can I help?"
-      ]
-    },
-    {
-      "tag": "goodbye",
-      "patterns": ["Bye", "See you later", "Goodbye"],
-      "responses": [
-        "See you later, thanks for visiting",
-        "Have a nice day",
-        "Bye! Come back again soon."
-      ]
-    },
-    {
-      "tag": "thanks",
-      "patterns": ["Thanks", "Thank you", "That's helpful", "Thank's a lot!"],
-      "responses": ["Happy to help!", "Any time!", "My pleasure"]
-    },
-    {
-      "tag": "items",
-      "patterns": [
-        "Which items do you have?",
-        "What kinds of items are there?",
-        "What do you sell?"
-      ],
-      "responses": [
-        "We sell coffee and tea",
-        "We have coffee and tea"
-      ]
-    },
-    {
-      "tag": "payments",
-      "patterns": [
-        "Do you take credit cards?",
-        "Do you accept Mastercard?",
-        "Can I pay with Paypal?",
-        "Are you cash only?"
-      ],
-      "responses": [
-        "We accept VISA, Mastercard and Paypal",
-        "We accept most major credit cards, and Paypal"
-      ]
-    },
-    {
-      "tag": "delivery",
-      "patterns": [
-        "How long does delivery take?",
-        "How long does shipping take?",
-        "When do I get my delivery?"
-      ],
-      "responses": [
-        "Delivery takes 2-4 days",
-        "Shipping takes 2-4 days"
-      ]
-    },
-    {
-      "tag": "funny",
-      "patterns": [
-        "Tell me a joke!",
-        "Tell me something funny!",
-        "Do you know a joke?"
-      ],
-      "responses": [
-        "Why did the hipster burn his mouth? He drank the coffee before it was cool.",
-        "What did the buffalo say when his son left for college? Bison."
-      ]
-    }
+  {
+  "tag": "greeting",
+  "patterns": [
+  "Hi",
+  "Hey",
+  "How are you",
+  "Is anyone there?",
+  "Hello",
+  "Good day"
+  ],
+  "responses": [
+  "Hey :-)",
+  "Hello, thanks for visiting",
+  "Hi there, what can I do for you?",
+  "Hi there, how can I help?"
   ]
-}
+  },
+  {
+  "tag": "goodbye",
+  "patterns": ["Bye", "See you later", "Goodbye"],
+  "responses": [
+  "See you later, thanks for visiting",
+  "Have a nice day",
+  "Bye! Come back again soon."
+  ]
+  },
+  {
+  "tag": "thanks",
+  "patterns": ["Thanks", "Thank you", "That's helpful", "Thank's a lot!"],
+  "responses": ["Happy to help!", "Any time!", "My pleasure"]
+  },
+  {
+  "tag": "appointment",
+  "patterns": [
+  "How can I schedule an appointment?",
+  "Do I need an appointment?",
+  "Can I book an appointment online?",
+  "What's the process of scheduling an appointment?",
+  "Are there any available appointment slots?",
+  "Can I schedule an appointment for [department/doctor]?"
+  ],
+  "responses": [
+  "To schedule an appointment, you can call our reception at [phone number].",
+  "Yes, appointments are required. You can call our reception or book online.",
+  "Certainly! You can book an appointment online through our website or call our reception for assistance.",
+  "The process of scheduling an appointment involves contacting our reception either by phone or through our website.",
+  "Our reception can provide you with available appointment slots. Please call them at [phone number].",
+  "Yes, you can schedule an appointment for a specific department or doctor. Just let us know your preference when contacting our reception."
+  ]
+  },
+  {
+  "tag": "visiting_hours",
+  "patterns": [
+  "What are the visiting hours?",
+  "When can I visit?",
+  "Are there any specific visiting hours?",
+  "Can I visit on weekends?",
+  "Are there any restrictions on visiting hours?"
+  ],
+  "responses": [
+  "Our visiting hours are from [start time] to [end time] on weekdays.",
+  "You can visit between [start time] and [end time] on weekdays.",
+  "Yes, we have specific visiting hours. They are from [start time] to [end time] on weekdays.",
+  "Visiting hours on weekends may vary. It's best to contact our reception for specific information.",
+  "Please note that visiting hours may be subject to restrictions. It's advisable to contact our reception for the latest updates."
+  ]
+  },
+  {
+  "tag": "insurance",
+  "patterns": [
+  "What insurance plans do you accept?",
+  "Is my insurance accepted?",
+  "Do you take [insurance company] insurance?",
+  "Can I use my insurance for payment?",
+  "Is insurance coverage available?"
+  ],
+  "responses": [
+  "We accept a wide range of insurance plans. Please provide us with your insurance details, and we'll verify coverage for you.",
+  "We accept most major insurance plans. Please provide us with your insurance details for verification.",
+  "Yes, we accept [insurance company] insurance. Please provide us with your insurance details for verification.",
+  "You can use your insurance for payment. Please provide us with your insurance details, and we'll assist you further.",
+  "Insurance coverage is available. Please provide us with your insurance details for verification and payment processing."
+  ]
+  },
+  {
+  "tag": "services",
+  "patterns": [
+  "What services do you offer?",
+  "What medical specialties do you have?",
+  "Can you tell me about your services?",
+  "What kind of treatments do you provide?",
+  "Do you offer [specific service/treatment]?"
+  ],
+  "responses": [
+  "We offer a wide range of services and medical specialties. These include [list of services/specialties].",
+  "Our hospital provides various services and medical specialties, such as [list of services/specialties].",
+  "We have a comprehensive range of services available. These include [list of services/specialties].",
+  "Our hospital offers treatments for various conditions. These include [list of treatments/conditions].",
+  "Yes, we offer [specific service/treatment]. Please let us know if you would like more information about it."
+  ]
+  },
+  {
+  "tag": "facilities",
+  "patterns": [
+  "What facilities do you have?",
+  "Can you tell me about your facilities?",
+  "Do you have parking facilities?",
+  "Are there wheelchair-accessible facilities?",
+  "Are there cafeteria/restaurant facilities?"
+  ],
+  "responses": [
+  "Our hospital is equipped with state-of-the-art facilities, including [list of facilities].",
+  "We have a range of facilities to ensure your comfort and convenience, such as [list of facilities].",
+  "Yes, we have parking facilities available for patients and visitors.",
+  "We have wheelchair-accessible facilities to accommodate individuals with mobility needs.",
+  "Yes, we have cafeteria/restaurant facilities on-site for patients, visitors, and staff."
+  ]
+  },
+  {
+  "tag": "doctors",
+  "patterns": [
+  "Can you provide information about your doctors?",
+  "Do you have specialized doctors?",
+  "Tell me about your medical staff",
+  "Who are the doctors at your hospital?",
+  "Can I choose a specific doctor?"
+  ],
+  "responses": [
+  "Our hospital has a team of highly qualified and specialized doctors. They have expertise in various medical fields.",
+  "Yes, we have specialized doctors who are experts in their respective fields.",
+  "Our medical staff consists of experienced doctors who provide exceptional care and treatment.",
+  "We have a dedicated team of doctors at our hospital. They are skilled professionals with extensive experience.",
+  "While we can't guarantee a specific doctor, we will do our best to accommodate your preference. Please let us know your request, and we'll assist you accordingly."
+  ]
+  },
+  {
+  "tag": "emergency",
+  "patterns": [
+  "What should I do in case of an emergency?",
+  "Is there an emergency department?",
+  "Where can I seek emergency care?",
+  "How do I reach the emergency room?",
+  "What are the emergency contact numbers?"
+  ],
+  "responses": [
+  "In case of an emergency, please call [emergency contact number] or proceed directly to our emergency department.",
+  "Yes, we have an emergency department to handle critical situations.",
+  "If you require emergency care, please proceed directly to our hospital's emergency department.",
+  "To reach the emergency room, please follow the signs or ask any staff member for assistance.",
+  "Our emergency contact numbers are [emergency contact numbers]. Please call in case of any emergencies."
+  ]
+  },
+  {
+  "tag": "billing",
+  "patterns": [
+  "How can I pay my bills?",
+  "What are the accepted payment methods?",
+  "Can I pay online?",
+  "Where can I inquire about my bills?",
+  "Are there any financial assistance programs?"
+  ],
+  "responses": [
+  "You can pay your bills at our billing department or through our online payment portal.",
+  "We accept various payment methods, including cash, credit cards, and online payments.",
+  "Yes, you can pay your bills online through our secure payment portal.",
+  "For inquiries about your bills, please contact our billing department directly.",
+  "We offer financial assistance programs. Please contact our billing department for more information and eligibility criteria."
+  ]
+  }
+  ]
+  }

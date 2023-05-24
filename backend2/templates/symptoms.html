@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Symptoms</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .hidden-input {
+            display: none;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .answer {
+            margin-bottom: 10px;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+        .value {
+            margin-left: 10px;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+        
+        .circle-button-container {
+            float: right;
+        }
+        
+        .circle-button {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: green;
+            margin-left: 10px;
+            margin-down: 40px;
+            text-align: center;
+            line-height: 40px;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .circle-button:hover {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Verify your Symptoms</h1>
+        <form action="/symptoms/report" method="GET">
+            <div class="answer">
+                <span class="label">This is for:</span>
+                <input type="hidden" name="is_self_or_other" value="{{ is_self_or_other }}">
+                <span class="value">{{ is_self_or_other }}</span>
+            </div>
+            <div class="answer">
+                <span class="label">Gender:</span>
+                <input type="hidden" name="gender" value="{{ gender }}">
+                <span class="value">{{ gender }}</span>
+            </div>
+            <div class="answer">
+                <span class="label">Age:</span>
+                <input type="hidden" name="age" value="{{ age }}">
+                <span class="value">{{ age }}</span>
+            </div>
+            <div class="answer">
+                <span class="label">Symptoms:</span>
+                <input type="hidden" name="symptom" value="{{ symptom }}">
+                <span class="value">{{ symptom }}</span>
+            </div>
+            <div class="answer">
+                <span class="label">Type of {{ symptom }}:</span>
+                <input type="hidden" name="tos" value="{{ tos }}">
+                <span class="value">{{ tos }}</span>
+            </div>
+            <div class="answer">
+                <span class="label">How {{ symptom }} started?</span>
+                <input type="hidden" name="start" value="{{ start }}">
+                <span class="value">{{ start }}</span>
+            </div>
+            <div class="answer">
+                <span class="label">Degree of discomfort?</span>
+                <input type="hidden" name="ran" value="{{ ran }}">
+                <span class="value">{{ ran }}</span>
+            </div>
+            <div class="answer">
+                <span class="label">Additional symptoms:</span>
+                <input type="hidden" name="additional" value="{{ additional }}">
+                <span class="value">{{ additional }}</span>
+            </div>
+            <div class="answer">
+                <span class="label">Threats:</span>
+                <input type="hidden" name="threats" value="{{ threats }}">
+                <span class="value">{{ threats }}</span>
+            </div>
+            <div class="answer">
+                <span class="label">Pattern:</span>
+                <input type="hidden" name="pattern" value="{{ pattern }}">
+                <span class="value">{{ pattern }}</span>
+            </div>
+            <div class="answer">
+                <span class="label">Covid19?</span>
+                <input type="hidden" name="cov_19" value="{{ cov_19 }}">
+                <span class="value">{{ cov_19 }}</span>
+            </div>
+            <div class="answer">
+                <span class="label">Duration?</span>
+                <input type="hidden" name="dur" value="{{ dur }}">
+                <span class="value">{{ dur }}</span>
+            </div>
+            <div class="button-container">
+                <input type="submit" value="View Reports" class="button">
+                
+            </div>
+        </form>
+    </div>
+</body>
+</html>

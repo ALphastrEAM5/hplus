@@ -237,32 +237,36 @@
 
     
     <form action="/option", method="post">
-        <table class="my-table" align="center">
-          <tr>
+      <table class="my-table" align="center">
+        <tr>
             <td>Other Payment Options</td>
             <td>Pay using UPI</td>
-          </tr>
-          <tr>
+        </tr>
+        <tr>
             <td>
-              <table>
-                <tr class="zoom-row">
-                  <td><input type="radio" name="payment-option" value="card">CREDIT / DEBIT / ATM CARD</td>
-                </tr>
-                <tr class="zoom-row">
-                  <td><input type="radio" name="payment-option" value="netbanking">NETBANKING</td>
-                </tr>
-                <tr class="zoom-row">
-                  <td><input type="radio" name="payment-option" value="wallets">WALLETS</td>
-                </tr>
-                <tr class="zoom-row">
-                  <td><input type="radio" name="payment-option" value="paylater">PAY LATER</td>
-                </tr>
-              </table>
+                <table>
+                    <tr class="zoom-row">
+                        <td><input type="radio" name="payment-option" value="card">CREDIT / DEBIT / ATM CARD</td>
+                    </tr>
+                    <tr class="zoom-row">
+                        <td><input type="radio" name="payment-option" value="netbanking">NETBANKING</td>
+                    </tr>
+                    <tr class="zoom-row">
+                        <td><input type="radio" name="payment-option" value="wallets">WALLETS</td>
+                    </tr>
+                    <tr class="zoom-row">
+                        <td><input type="radio" name="payment-option" value="paylater">PAY LATER</td>
+                    </tr>
+                </table>
             </td>
-           
-
-          </tr>
-        </table>
+            <td>
+                <span style="display: inline-block; vertical-align: middle;">Pay using any UPI app</span>
+                <img src="/static/assets/img/QR.jpeg" alt="Image" style="display: inline-block; vertical-align: middle;" width="120px" height="120px"> <!-- Add the image source and adjust styling as needed -->
+            </td>
+        </tr>
+    </table>
+    
+    
 
         <script>
           var zoomRows = document.getElementsByClassName('zoom-row');

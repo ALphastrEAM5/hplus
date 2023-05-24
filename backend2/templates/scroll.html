@@ -1,175 +1,1030 @@
+
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      .question {
-        display: none;
-      }
-    </style>
-    <style>
-      .assessmentList {
-        position: relative;
-        display: inline-block;
-        cursor: pointer;
-      }
+<head>
+  
+  <style>
+    .question {
+      display: none;
+    }
+  </style>
+  <style>
+    .radio-container {
+      display: none;
+    }
+    .radio-label {
+      display: inline-block;
+      margin-bottom: 10px;
+      position: relative;
+      padding-left: 30px;
+      cursor: pointer;
+    }
+    .radio-label:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 2px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 1px solid #999;
+    }
+    .radio-label:before {
+      background: #fff;
+    }
+    .radio-input {
+      opacity: 0;
+      position: absolute;
+      left: -9999px;
+    }
 
-      .imgBx {
-        position: relative;
-      }
+    .txt {
+      display: inline-block;
+      background-color: #f1f1f1;
+      border-radius: 20px;
+      padding: 10px;
+      margin: 5px;
+    }
+    
+    .flex-container {
+      display: flex;
+      flex-wrap: wrap;
+    }
 
-      .checkmark {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: 2px solid transparent;
-        transition: border-color 0.2s ease-in-out;
-        pointer-events: none;
-      }
+    .assessmentList {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+    }
 
-      .selected .checkmark {
-        border-color: #00b4d8;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Questionnaire</h1>
+    .imgBx {
+      position: relative;
+    }
 
-    <form id="questionForm" , action="/symptoms" , method="post">
-      <div class="question">
-        <div class="jss50">
-          <p class="singleChat">Is this for self or someone else?</p>
-        </div>
-        <div class="">
-          <div class="jss46">
-            <div class="assessmentList" data-value="self">
-              <div class="imgBx">
-                <img
-                  src="https://newassets.apollo247.com/images/myself.svg"
-                  alt=""
-                  height="58px"
-                  width="80px"
-                />
-                <div class="checkmark"></div>
-              </div>
-              <p class="txt">self</p>
+    .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 2px solid transparent;
+      transition: border-color 0.2s ease-in-out;
+      pointer-events: none;
+    }
+
+    .selected .checkmark {
+      border-color: #00b4d8;
+    }
+
+    /*Style*/
+    #questionForm{
+      border: 5px solid #1d2d3a;
+      background-color: #1d2d3a;
+      width: 400px;
+      height: 580px;
+      margin-left: 400px;
+      border-radius:30px;
+      box-shadow: 10px 10px 10px rgba(19, 160, 220, 5),
+          10px 10px 15px rgba(116, 32, 32, 0.05);
+        border-radius: 10px;
+    }
+    
+    
+    .container1 #assessmentListSelf {
+      background-color: #fff;
+      display:flex;
+      
+      position: relative;
+      border-radius: 5px solid rgb(82, 4, 4);
+      margin:20px;
+      margin-top:180px;
+      margin-left:50px;
+    }
+
+    .container1 #assessmentListSelf{
+      width: 150px;
+      height: 50px;
+      box-sizing: 50px;
+      border-radius: 10px;
+  
+      border-radius: 10px solid rgb(82, 4, 4);
+  
+      box-shadow: 10px 10px 10px rgba(19, 160, 220, 5),
+        10px 10px 15px rgba(116, 32, 32, 0.05);
+    }
+  
+    
+
+
+    .container1 #assessmentListOther{
+      background-color: #fff;
+      display:flex;
+      margin:20px;
+      
+      border-radius: 5px solid #1d2d3a);
+      margin-top:-70px;
+      margin-left:220px;
+      position: relative;
+      
+   }
+
+   .container1 #assessmentListOther{
+    width: 150px;
+    height: 50px;
+
+    box-sizing: 50px;
+    border-radius: 10px;
+
+    border-radius: 10px solid #1d2d3a;
+
+    box-shadow: 10px 10px 10px rgba(19, 160, 220, 5),
+      10px 10px 15px rgba(116, 32, 32, 0.05);
+  }
+   
+
+    #assessmentListSubmit{
+      position: relative;
+      top: -10px;
+      left: 10px;
+      width: 100px;
+      height: 50px;
+      margin-top: 10px;
+      padding-top: 10px;
+      margin-left:125px;
+    }
+    #assessmentListSubmit {
+      width: 150px;
+      height: 50px;
+
+      box-sizing: 50px;
+      border-radius: 10px;
+
+      border-radius: 5px solid rgb(82, 4, 4);
+
+      box-shadow: 10px 10px 10px rgba(19, 160, 220, 5),
+        10px 10px 15px rgba(116, 32, 32, 0.05);
+    }
+
+    #assessmentListSubmit:hover {
+      background-color: #fff;
+      letter-spacing: 1px;
+      background: linear-gradient(135deg, #14ffe9, #ffeb3b, #ff00e0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: animate 1.5s linear infinite;
+    }
+    @keyframes animate {
+      100% {
+        filter: hue-rotate(360deg);
+      }
+    }
+
+
+    body h1 {
+      
+      left: 50%;
+      top: 50%;
+      margin-left: 0px;
+      position: absolute;
+      margin-top: -300px;
+      margin-left:-100px;
+      padding: 10px;
+      color: #fff;
+
+    }
+     p{
+      justify-content:center;
+      border :2px solid ;
+      
+
+    }
+    .jss46 #assessmentListMale {
+      background-color: #fff;
+      display:flex;
+      
+      position: relative;
+      border-radius: 5px solid rgb(82, 4, 4);
+      margin:20px;
+      margin-top:120px;
+      margin-left:50px;
+    }
+
+    .jss46 #assessmentListMale{
+      width: 150px;
+      height: 50px;
+      box-sizing: 50px;
+      border-radius: 10px;
+  
+      border-radius: 10px solid rgb(82, 4, 4);
+  
+      box-shadow: 10px 10px 10px rgba(19, 160, 220, 5),
+        10px 10px 15px rgba(116, 32, 32, 0.05);
+    }
+  
+    
+
+
+    .jss46 #assessmentListFemale{
+      background-color: #fff;
+      display:flex;
+      margin:20px;
+      
+      border-radius: 5px solid #1d2d3a;
+      margin-top:-70px;
+      margin-left:220px;
+      position: relative;
+      
+   }
+
+   .jss46 #assessmentListFemale{
+    width: 150px;
+    height: 50px;
+
+    box-sizing: 50px;
+    border-radius: 10px;
+
+    border-radius: 10px solid #1d2d3a;
+
+    box-shadow: 10px 10px 10px rgba(19, 160, 220, 5),
+      10px 10px 15px rgba(116, 32, 32, 0.05);
+  }
+  .container2 #ageInput{
+    border:5px solid #1d2d3a;
+    margin-left:50px;
+    margin-bottom:50px;
+  }
+   
+.jss50 p {
+  border:5px solid #1d2d3a;
+  color: #fff;
+  bottom:-10px;
+  margin-top:120px;
+  margin-left: 90px;
+  margin-bottom:50px;
+  width:70%;
+  
+  height:100px;
+
+
+}
+.jss61{
+  border:5px solid #1d2d3a;
+  bottom:10px;
+}
+.inputBx inputDate{
+  border:5px solid #1d2d3a;
+  bottom:10px;
+  margin-left:80px;
+}
+body{
+  background-color: #dcdfce;
+}
+
+  </style>
+</head>
+<body>
+  <h1>Questionnaire</h1>
+
+  <form id="questionForm" action="/symptoms" method="post">
+
+    {% if symptom == 'cough' %}
+    <div class="question">
+      <div class="jss50">
+        <p class="singleChat">Don't worry! We are here to help!<br><br>How would you describe your {{symptom}}?</p>
+        
+      </div>
+      <div class="">
+        <div class="jss46">
+          <div class="assessmentList" data-value="dry cough">
+            <div class="imgBx">
+              
+              <div class="checkmark"></div>
             </div>
-            <div class="assessmentList" data-value="other">
-              <div class="imgBx">
-                <img
-                  src="https://newassets.apollo247.com/images/someoneElse.svg"
-                  alt=""
-                  height="58px"
-                  width="80px"
-                />
-                <div class="checkmark"></div>
-              </div>
-              <p class="txt">other</p>
+            <p class="txt">Dry cough</p>
+            <input type="hidden" name="answer" value="dry cough">
+          </div>
+          <div class="assessmentList" data-value="coughing up sputum">
+            <div class="imgBx">
+              
+              <div class="checkmark"></div>
             </div>
+            <p class="txt">Coughing up sputum</p>
+            <input type="hidden" name="answer" value="coughing up sputum">
+          </div>
+          <div class="assessmentList" data-value="coughs followed by breath sound like loud cry">
+            <div class="imgBx">
+              
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">Coughs followed by breath sound like loud cry</p>
+            <input type="hidden" name="answer" value="coughs followed by breath sound like loud cry">
+          </div>
+          <div class="assessmentList" data-value="barking cough">
+            <div class="imgBx">
+              
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">Barking cough</p>
+            <input type="hidden" name="answer" value="barking cough">
+          </div>
+          <div class="assessmentList" data-value="not sure">
+            <div class="imgBx">
+              
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">Not sure</p>
+            <input type="hidden" name="answer" value="not sure">
           </div>
         </div>
       </div>
-      
-      <div class="question">
-        <div class="jss50">
-          <p class="singleChat">Please select gender</p>
-        </div>
-        <div class="">
-          <div class="jss46">
-            <div class="assessmentList">
-              <div class="imgBx">
-                <img
-                  src="https://newassets.apollo247.com/images/male.svg"
-                  alt=""
-                  height="58px"
-                  width="80px"
-                  onclick="selectGender('male')"
-                />
-                <div id="maleCheckmark" class="checkmark"></div>
-              </div>
-              <p class="txt">Male</p>
+    </div>
+
+    <div class="question">
+      <div class="jss50">
+        <p class="singleChat">Thank you for your patience. For a better analysis, we will need to ask a few more questions.<br><br>How did the {{symptom}} start?</p>
+        
+      </div>
+      <div class="">
+        <div class="jss46">
+          <div class="assessmentList" data-value="suddenly">
+            <div class="imgBx">
+              
+              <div class="checkmark"></div>
             </div>
-            <div class="assessmentList">
-              <div class="imgBx">
-                <img
-                  src="https://newassets.apollo247.com/images/female.svg"
-                  alt=""
-                  height="58px"
-                  width="80px"
-                  onclick="selectGender('female')"
-                />
-                <div id="femaleCheckmark" class="checkmark"></div>
-              </div>
-              <p class="txt">Female</p>
+            <p class="txt">Suddenly</p>
+            <input type="hidden" name="answer" value="suddenly">
+          </div>
+          <div class="assessmentList" data-value="gradually">
+            <div class="imgBx">
+              
+              <div class="checkmark"></div>
             </div>
+            <p class="txt">Gradually</p>
+            <input type="hidden" name="answer" value="gradually">
+          </div>
+          <div class="assessmentList" data-value="not sure">
+            <div class="imgBx">
+              
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">Not sure</p>
+            <input type="hidden" name="answer" value="not sure">
           </div>
         </div>
       </div>
+    </div>
 
 
-      <div class="question">
-  <div class="jss50">
-    <p class="singleChat">Please enter age</p>
-  </div>
-  <div class="">
-    <div class="jss61">
-      <input
-        id="ageInput"
-        class="inputBx inputDate"
-        type="number"
-        min="0"
-        max="99"
-        placeholder="25 years"
-        maxlength="2"
-      />
-      
+    <div class="question">
+      <div class="jss50">
+        <p class="singleChat">You're just few steps away from getting your report generated!<br><br>On a scale of 1-10 give us a feedback about how you're liking our questions?</p>
+        
+      </div>
+      <div class="">
+        <div class="jss61">
+          <input
+            id="ageInput"
+            class="inputBx inputDate"            
+            type="number"
+            placeholder=""
+            maxlength="2"
+            name="age"
+          >
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
-      <!-- Add more questions here -->
+  <div class="question">
+    <div class="jss50">
+      <p class="singleChat">On a scale of 1-10, how severe is your {{symptom}}?</p>
+      
+    </div>
+    <div class="">
+      <div class="jss46">
+        <div class="assessmentList" data-value="1">
+          <div class="imgBx">
+            
+            <div class="checkmark"></div>
+          </div>
+          <p class="txt">1</p>
+          <input type="hidden" name="answer" value="1">
+        </div>
+        <div class="assessmentList" data-value="2">
+          <div class="imgBx">
+            
+            <div class="checkmark"></div>
+          </div>
+          <p class="txt">2</p>
+          <input type="hidden" name="answer" value="2">
+        </div>
+        <div class="assessmentList" data-value="3">
+          <div class="imgBx">
+            
+            <div class="checkmark"></div>
+          </div>
+          <p class="txt">3</p>
+          <input type="hidden" name="answer" value="3">
+        </div>
+        <div class="assessmentList" data-value="4">
+          <div class="imgBx">
+            
+            <div class="checkmark"></div>
+          </div>
+          <p class="txt">4</p>
+          <input type="hidden" name="answer" value="4">
+        </div>
+        <div class="assessmentList" data-value="5">
+          <div class="imgBx">
+            
+            <div class="checkmark"></div>
+          </div>
+          <p class="txt">5</p>
+          <input type="hidden" name="answer" value="5">
+        </div>
+        <div class="assessmentList" data-value="6">
+          <div class="imgBx">
+            
+            <div class="checkmark"></div>
+          </div>
+          <p class="txt">6</p>
+          <input type="hidden" name="answer" value="6">
+        </div>
+        <div class="assessmentList" data-value="7">
+          <div class="imgBx">
+            
+            <div class="checkmark"></div>
+          </div>
+          <p class="txt">7</p>
+          <input type="hidden" name="answer" value="7">
+        </div>
+        <div class="assessmentList" data-value="8">
+          <div class="imgBx">
+            
+            <div class="checkmark"></div>
+          </div>
+          <p class="txt">8</p>
+          <input type="hidden" name="answer" value="8">
+        </div>
+        <div class="assessmentList" data-value="9">
+          <div class="imgBx">
+            
+            <div class="checkmark"></div>
+          </div>
+          <p class="txt">9</p>
+          <input type="hidden" name="answer" value="9">
+        </div>
+        <div class="assessmentList" data-value="10">
+          <div class="imgBx">
+            
+            <div class="checkmark"></div>
+          </div>
+          <p class="txt">10</p>
+          <input type="hidden" name="answer" value="10">
+        </div>
 
-      <input type="submit" value="Submit" />
-    </form>
+      </div>
+    </div>
+  </div>
 
-    <script>
-      var form = document.getElementById("questionForm");
-      var questions = form.getElementsByClassName("question");
-      var currentQuestion = 0;
+    <div class="question">
+      <div class="jss50">
+        <p class="singleChat">Which of these symptoms do you experience in addition to {{symptom}}?</p>
+        
+      </div>
+      <div class="">
+        <div class="jss46">
+          <div class="assessmentList" data-value="headache">
+            <div class="imgBx">
+              
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">Headache</p>
+            <input type="hidden" name="answer" value="headache">
+          </div>
+          <div class="assessmentList" data-value="vomiting">
+            <div class="imgBx">
+              
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">Vomiting</p>
+            <input type="hidden" name="answer" value="vomiting">
+          </div>
+          <div class="assessmentList" data-value="hoarseness of voice">
+            <div class="imgBx">
+              
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">Hoarseness of voice</p>
+            <input type="hidden" name="answer" value="hoarseness of voice">
+          </div>
+          <div class="assessmentList" data-value="wheezing">
+            <div class="imgBx">
+              
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">Wheezing</p>
+            <input type="hidden" name="answer" value="wheezing">
+          </div>
+          <div class="assessmentList" data-value="running nose">
+            <div class="imgBx">
+              
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">Running nose</p>
+            <input type="hidden" name="answer" value="running nose">
+          </div>
+        </div>
+        <div class="assessmentList" data-value="nose secretions running down the threat">
+          <div class="imgBx">
+            
+            <div class="checkmark"></div>
+          </div>
+          <p class="txt">Nose secretions running down the throat</p>
+          <input type="hidden" name="answer" value="nose secretions runnin down the throat">
+        </div>
+      </div>
+      <div class="assessmentList" data-value="none">
+        <div class="imgBx">
+          
+          <div class="checkmark"></div>
+        </div>
+        <p class="txt">None</p>
+        <input type="hidden" name="answer" value="nose">
+      </div>
+        </div>
+      </div>
+    </div>
 
-      function showNextQuestion() {
-        questions[currentQuestion].style.display = "none";
-        currentQuestion++;
+    <div class="question">
+      <div class="jss50">
+        <p class="singleChat">Do any of these make the {{symptom}} worse?</p>
+        
+      </div>
+      <div class="">
+        <div class="jss46">
+          <div class="assessmentList" data-value="allergy">
+            <div class="imgBx">
+              
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">Allergy</p>
+            <input type="hidden" name="answer" value="allergy">
+          </div>
+          <div class="assessmentList" data-value="environment irritants">
+            <div class="imgBx">
+              
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">Environment irritants</p>
+            <input type="hidden" name="answer" value="environment irritants">
+          </div>
+          <div class="assessmentList" data-value="sleep / lying down">
+            <div class="imgBx">
+              
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">Sleep / lying down</p>
+            <input type="hidden" name="answer" value="sleep / lying down">
+          </div>
+          <div class="assessmentList" data-value="none">
+            <div class="imgBx">
+              
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">None</p>
+            <input type="hidden" name="answer" value="none">
+          </div>
+        </div>
+      </div>
+    </div>
 
-        if (currentQuestion < questions.length) {
-          questions[currentQuestion].style.display = "block";
-          questions[currentQuestion].scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          });
+    <div class="question">
+      <div class="jss50">
+        <p class="singleChat">Does the {{ symptom }} follow any pattern as given below?</p>
+        
+      </div>
+      <div class="">
+        <div class="jss46">
+          <div class="assessmentList" data-value="occuring at irregular gaps">
+            <div class="imgBx">
+              
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">Occuring at irregular gaps</p>
+            <input type="hidden" name="answer" value="occuring at irregular gaps">
+          </div>
+          <div class="assessmentList" data-value="occuring continuously over a period of time">
+            <div class="imgBx">
+              
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">Occuring continuously over a period of time</p>
+            <input type="hidden" name="answer" value="occuring continuously over a period of time">
+          </div>
+          <div class="assessmentList" data-value="morning or night">
+            <div class="imgBx">
+              
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">Morning or night</p>
+            <input type="hidden" name="answer" value="morning or night">
+          </div>
+          <div class="assessmentList" data-value="not sure">
+            <div class="imgBx">
+              
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">Not sure</p>
+            <input type="hidden" name="answer" value="not sure">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="jss50">
+        <p class="singleChat">Have you come in contact with anyone who is exposed to COVID-19?</p>
+        
+      </div>
+      <div class="">
+        <div class="jss46">
+          <div class="assessmentList" data-value="yes">
+            <div class="imgBx">
+              
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">Yes</p>
+            <input type="hidden" name="answer" value="yes">
+          </div>
+          <div class="assessmentList" data-value="no">
+            <div class="imgBx">
+              
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">No</p>
+            <input type="hidden" name="answer" value="no">
+          </div>
+          <div class="assessmentList" data-value="not sure">
+            <div class="imgBx">
+              
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">Not sure</p>
+            <input type="hidden" name="answer" value="not sure">
+          </div>
+          
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="question">
+      <div class="jss50">
+        <p class="singleChat">How long has the {{ symptom }} been troubling you?</p>
+       
+      </div>
+      <div class="">
+        <div class="jss46">
+          <div class="assessmentList" data-value="less than 1 day">
+            <div class="imgBx">
+              
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">Less than 1 day</p>
+            <input type="hidden" name="answer" value="less than 1 day">
+          </div>
+          <div class="assessmentList" data-value="1 day to 1 week">
+            <div class="imgBx">
+              
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">1 day to 1 week</p>
+            <input type="hidden" name="answer" value="1 day to 1 week">
+          </div>
+          <div class="assessmentList" data-value="1 week to 1 month">
+            <div class="imgBx">
+              
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">1 week to 1 month</p>
+            <input type="hidden" name="answer" value="1 week to 1 month">
+          </div>
+          <div class="assessmentList" data-value="1 month to 1 year">
+            <div class="imgBx">
+              
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">1 month to 1 week</p>
+            <input type="hidden" name="answer" value="1 month to 1 week">
+          </div>
+          <div class="assessmentList" data-value="not sure">
+            <div class="imgBx">
+              
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">Not sure</p>
+            <input type="hidden" name="answer" value="not sure">
+          </div>
+        </div>
+      </div>
+    </div>
+       
+
+  </div>
+
+
+    
+
+    
+
+    {% else %}
+
+    <div class="question">
+      <div class="jss50">
+        <p class="singleChat">Is this for self or someone else?</p>
+      </div>
+      <div class="container1">
+        <div class="jss46">
+          <div class="assessmentList"
+          id="assessmentListSelf" data-value="self">
+            <div class="imgBx">
+              <img
+                src="https://newassets.apollo247.com/images/myself.svg"
+                alt=""
+                height="58px"
+                width="80px"
+              />
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">self</p>
+            <div class="radio-container">
+            <input type="radio" name="answer0" value="self" class="radio-input">
+            <label for="self" class="radio-label">Self</label>
+            </div>
+          </div>
+          <div class="assessmentList" id="assessmentListOther" data-value="other">
+            <div class="imgBx">
+              <img
+                src="https://newassets.apollo247.com/images/someoneElse.svg"
+                alt=""
+                height="58px"
+                width="80px"
+              />
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">other</p>
+            <div class="radio-container">
+            <input type="radio" name="answer0" value="other"class="radio-input">
+            <label for="other" class="radio-label">Other</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="question">
+      <div class="jss50">
+        <p class="singleChat">Please select gender</p>
+      </div>
+      <div class="">
+        <div class="jss46">
+          <div class="assessmentList" id="assessmentListMale" data-value="male">
+            <div class="imgBx">
+              <img
+                src="https://newassets.apollo247.com/images/male.svg"
+                alt=""
+                height="58px"
+                width="80px"
+              />
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">Male</p>
+            <div class="radio-container">
+            <input type="radio" name="answer1" value="male"class ="radio-input">
+            <label for="male" class="radio-label">Male</label>
+            </div>
+          </div>
+          <div class="assessmentList" id="assessmentListFemale" data-value="female">
+            <div class="imgBx">
+              <img
+                src="https://newassets.apollo247.com/images/female.svg"
+                alt=""
+                height="58px"
+                width="80px"
+              />
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">Female</p>
+            <div class="radio-container">
+            <input type="radio" name="answer1" value="female" class="radio-input">
+            <label for="female" class="radio-label">Female</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="question">
+      <div class="jss50">
+        <p class="singleChat">Please enter age</p>
+      </div>
+      <div class="">
+        <div class="jss61">
+          <input
+            id="ageInput"
+            class="inputBx inputDate"            
+            type="number"
+            min="0"
+            max="99"
+            placeholder="25 years"
+            maxlength="2"
+            name="age"
+            style="margin-left:135px"
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Add more questions here -->
+
+    <div class="question">
+      <div class="jss50">
+        <p class="singleChat">From the symptoms below, please pick one that's troubling you the most</p>
+      </div>
+      <div class="">
+        <div class="jss46">
+          <div class="assessmentList" data-value="headache">
+            <div class="imgBx">
+              <img src="https://newassets.apollo247.com/images/headache.svg" alt="" height="58px" width="80px" />
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">Headache</p>
+            <div class="radio-container">
+            <input type="radio" name="answer2" value="headache" class="radio-input">
+            <label for="headache" class="radio-label">Headache</label>
+            </div>
+          </div>
+          <div class="assessmentList" data-value="cough">
+            <div class="imgBx">
+              <img src="https://newassets.apollo247.com/images/cough.svg" alt="" height="58px" width="80px" />
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">Cough</p>
+            <div class="radio-container">
+            <input type="radio" name="answer2" value="cough" class="radio-input">
+            <label for="cough" class="radio-label">Cough</label>
+            </div>
+          </div>
+          <div class="assessmentList" data-value="heartburn">
+            <div class="imgBx">
+              <img src="https://newassets.apollo247.com/images/heartBurn.svg" alt="" height="58px" width="80px" />
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">Heartburn</p>
+            <div class="radio-container">
+            <input type="radio" name="answer2" value="heartburn" class="radio-input">
+            <label for="heartburn" class="radio-label">Heartburn</label>
+            </div>
+          </div>
+          <div class="assessmentList" data-value="sore throat">
+            <div class="imgBx">
+              <img src="https://newassets.apollo247.com/images/askApollo/web/soreThroat_symptom.svg" alt="" height="58px" width="80px" />
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">Sore throat</p>
+            <div class="radio-container">
+            <input type="radio" name="answer2" value="sore throat" class="radio-input">
+            <label for="sore throat" class="radio-label">Sore throat</label>
+            </div>
+          </div>
+          <div class="assessmentList" data-value="runny nose">
+            <div class="imgBx">
+              <img src="https://newassets.apollo247.com/images/runnyNose.svg" alt="" height="58px" width="80px" />
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">Runny nose</p>
+            <div class="radio-container">
+            <input type="radio" name="answer2" value="runny nose" class="radio-input">
+            <label for="runny nose" class="radio-label">Runny nose</label>
+            </div>
+          </div>
+          <div class="assessmentList" data-value="fever">
+            <div class="imgBx">
+              <img src="https://newassets.apollo247.com/images/fever.svg" alt="" height="58px" width="80px" />
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">Fever</p>
+            <div class="radio-container">
+            <input type="radio" name="answer2" value="fever" class="radio-input">
+            <label for="fever" class="radio-label">Fever</label>
+            </div>
+          </div>
+          <div class="assessmentList"
+          data-value="vommiting">
+            <div class="imgBx">
+              <img src="https://newassets.apollo247.com/images/vommiting.svg" alt="" height="58px" width="80px" />
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">Vomiting</p>
+            <div class="radio-container">
+            <input type="radio" name="answer2" value="vomiting" class="radio-input">
+            <label for="vomiting" class="radio-label">Vomiting</label>
+            </div>
+          </div>
+          <div class="assessmentList" data-value="backache">
+            <div class="imgBx">
+              <img src="https://newassets.apollo247.com/images/backPain.svg" alt="" height="58px" width="80px" />
+              <div class="checkmark"></div>
+            </div>
+            <p class="txt">Backache</p>
+            <div class="radio-container">
+            <input type="radio" name="answer2" value="backache" class="radio-input">
+            <label for="backache" class="radio-label">Backache</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+
+
+    {% endif %}
+
+    <input id="assessmentListSubmit" type="submit" value="Submit" />
+  </form>
+
+
+  
+  <script>
+    var form = document.getElementById("questionForm");
+    var questions = form.getElementsByClassName("question");
+    var currentQuestion = 0;
+  
+    function showNextQuestion() {
+      var selectedOption = questions[currentQuestion].querySelector(".assessmentList.selected");
+      if (currentQuestion !== 2 && !selectedOption) {
+        alert("Please select an answer before proceeding.");
+        return;
+      }
+  
+      if (currentQuestion === 2) {
+        var ageInput = document.getElementById("ageInput");
+        var ageValue = ageInput.value.trim();
+        if (!ageValue) {
+          alert("Please enter your age before proceeding.");
+          return;
         }
+        var input = document.createElement("input");
+        input.type = "hidden";
+        input.name = "answer" + currentQuestion;
+        input.value = ageValue;
+        form.appendChild(input);
+      } else {
+        var selectedValue = selectedOption.getAttribute("data-value");
+        var input = document.createElement("input");
+        input.type = "hidden";
+        input.name = "answer" + currentQuestion;
+        input.value = selectedValue;
+        form.appendChild(input);
       }
-
-      form.addEventListener("submit", function (event) {
-        event.preventDefault();
-        showNextQuestion();
-      });
-
-      questions[currentQuestion].style.display = "block";
-    </script>
-
-    <script>
-      var assessmentList = document.getElementsByClassName("assessmentList");
-      for (var i = 0; i < assessmentList.length; i++) {
-        assessmentList[i].addEventListener("click", function () {
-          var selected = document.querySelector(".assessmentList.selected");
-          if (selected) {
-            selected.classList.remove("selected");
-          }
-          this.classList.add("selected");
+  
+      questions[currentQuestion].style.display = "none";
+      currentQuestion++;
+  
+      if (currentQuestion < questions.length) {
+        questions[currentQuestion].style.display = "block";
+        questions[currentQuestion].scrollIntoView({
+          behavior: "smooth",
+          block: "start",
         });
+      } else {
+        form.submit(); // Submit the form when all questions are answered
       }
-    </script>
-  </body>
+    }
+  
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      showNextQuestion();
+    });
+  
+    questions[currentQuestion].style.display = "block";
+  </script>
+  
+  <script>
+    var assessmentLists = document.querySelectorAll(".assessmentList");
+    for (var i = 0; i < assessmentLists.length; i++) {
+      assessmentLists[i].addEventListener("click", function () {
+        var selected = this.parentElement.querySelector(".assessmentList.selected");
+        if (selected) {
+          selected.classList.remove("selected");
+        }
+        this.classList.add("selected");
+      });
+    }
+  </script>
+  
+</body>
 </html>

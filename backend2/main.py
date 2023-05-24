@@ -158,6 +158,22 @@ class pkgs(db.Model):
 #         return func(*args, **kwargs)
 #     return decorated_view
 
+class health(db.Model):
+    id= db.Column(db.Integer, primary_key=True)
+    age = db.Column(db.Integer)
+    symptom = db.Column(db.String(100))
+    doctor = db.Column(db.String(100))
+    tos= db.Column(db.String(100))
+    started= db.Column(db.String(50))
+    ran= db.Column(db.Integer)
+    additional= db.Column(db.String(100))
+    threats= db.Column(db.String(100))
+    pattern= db.Column(db.String(100))
+    covid19= db.Column(db.String(50))
+    dur= db.Column(db.String(50))
+    rep= db.Column(db.String(100))
+    
+
 @app.before_request
 def before_request():
     g.hospital_user = None
@@ -792,5 +808,126 @@ def feedback():
     
     return render_template("/support.html")
 
+
+@app.route('/symptoms', methods=['POST'])
+def handle_symptoms():
+    # Retrieve the submitted form data
+    global is_self_or_other
+    global gender
+    global age
+    global symptom
+    global tos
+    if request.form.get('answer0') == 'self' or request.form.get('answer0') == 'other':
+        session['is_self_or_other'] = is_self_or_other= request.form.get('answer0')
+        session['gender'] = gender= request.form.get('answer1')
+        session['age'] = age= request.form.get('answer2')
+        session['symptom'] = symptom= request.form.get('answer3')
+        print(is_self_or_other, gender, age, symptom)
+        return render_template("scroll.html", symptom=symptom)
+        # return render_template('symptoms.html', is_self_or_other=is_self_or_other, gender=gender, age=age, symptom=symptom)
+        
+        print("check")
+        print(is_self_or_other, gender, age, symptom)
+        
+        return render_template('symptoms.html', is_self_or_other=is_self_or_other, gender=gender, age=age, symptom=symptom)
+    # Process the data as needed
+
+    tos=request.form.get('answer0')
+    start=request.form.get('answer1')
+    explain=request.form.get('answer2')
+    ran=request.form.get('answer3')
+    additional=request.form.get('answer4')
+    threats=request.form.get('answer5')
+    pattern=request.form.get('answer6')
+    cov_19=request.form.get('answer7')
+    dur=request.form.get('answer8')
+    print(tos)
+    
+   
+    # print(request.form.get('answer0'),request.form.get('answer0'),request.form.get('answer0'))
+    # print(symptom)
+    # a= request.form.get('answer0')
+    # if a == 'dry cough':
+    #     print("s", symptom)
+    #     if symptom == 'cough':
+    #         print("yes")
+    #         tos = a
+    #         print(tos)
+    # Pass the retrieved answers to the template
+    # if request.form.get('answer0') == 'dry cough':
+    #     print(symptom)
+    #     if symptom == 'cough':
+    #         print("yes")
+    #         tos = request.form.get('answer')
+            
+            # return render_template('scroll.html', symptom=symptom, tos=tos)
+    
+    # print(is_self_or_other, gender, age, symptom, tos)
+    return render_template('symptoms.html', is_self_or_other=is_self_or_other, gender=gender, age=age, symptom=symptom, tos=tos, start=start, explain=explain, ran=ran, additional=additional, threats=threats, pattern=pattern, cov_19=cov_19, dur=dur)
+
+
+# @app.route('/symptoms', methods=['POST'])
+# def handle_symptoms2():
+#     # Retrieve the submitted form data
+#     is_self_or_other=""
+#     gender=""
+#     age=""
+#     symptom=""
+#     tos=""
+#     if request.form.get('answer0') == 'self' or request.form.get('answer0') == 'other':
+#         session['is_self_or_other'] = is_self_or_other= request.form.get('answer0')
+#         session['gender'] = gender= request.form.get('answer1')
+#         session['age'] = age= request.form.get('answer2')
+#         session['symptom'] = symptom= request.form.get('answer3')
+#         print(is_self_or_other, gender, age, symptom)
+#         return render_template('symptoms.html', is_self_or_other=is_self_or_other, gender=gender, age=age, symptom=symptom)
+
+
+@app.route('/symptoms/report', methods=['GET'])
+def symptoms_report():
+    is_self_or_other = request.args.get('is_self_or_other')
+    gender = request.args.get('gender')
+    age = request.args.get('age')
+    symptom = request.args.get('symptom')
+    tos = request.args.get('tos')
+    start = request.args.get('start')
+    ran = request.args.get('ran')
+    additional = request.args.get('additional')
+    threats = request.args.get('threats')
+    pattern = request.args.get('pattern')
+    cov_19 = request.args.get('cov_19')
+    dur = request.args.get('dur')
+    
+    print(is_self_or_other, gender, age, symptom, tos, start, ran, additional, threats, pattern, cov_19, dur)
+    
+    s = health.query.join(doctors, health.doctor==doctors.specialization).filter(health.age == age, health.symptom == symptom, health.tos == tos, health.started == start, health.ran == ran, health.additional == additional, health.threats == threats, health.pattern == pattern, health.covid19 == cov_19, health.dur == dur).all()
+    
+    doc = doctors.query.filter(doctors.specialization == 'ENT').all()
+    
+    row2= '0'
+    for row2 in doc:
+        print(row2.name)
+    
+    s1 = health.query.filter(health.age == age, health.symptom == symptom, health.ran >= ran, health.threats == threats, health.covid19 == cov_19, health.dur == dur).all()
+    
+    row1= '0'
+    for row1 in s1:
+        print(row1.pattern)
+
+    
+    
+    return render_template('reports.html', s=s, row1=row1, row2=row2, gen=gender)
+
+
 if __name__ == "__main__":
-     app.run(host='0.0.0.0', port=8080, debug=True)
+    is_self_or_other=""
+    gender=""
+    age=""
+    symptom=""
+    tos=""
+    start=""
+    explain=""
+    ran=""
+    additional=""
+    print(is_self_or_other, gender, age, symptom, tos)
+    app.run(host='0.0.0.0', port=8080, debug=True)
